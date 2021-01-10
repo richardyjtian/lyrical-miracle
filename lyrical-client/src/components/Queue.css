@@ -1,0 +1,12 @@
+.Queue{
+  width: 300px;
+  height: 700px;
+  position: fixed;
+  z-index: 1;
+  top: 60px;
+  right: 10px;
+  background: #ffffff;
+  overflow-x: hidden;
+  padding: 8px 0;
+  text-align: center;
+}

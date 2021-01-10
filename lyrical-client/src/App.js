@@ -2,6 +2,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import SearchPage from './components/SearchPage.js'
 import PlayPage from './components/PlayPage.js'
+import Queue from './components/Queue.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
             <PlayPage/>
           </Tab>
         </Tabs>
+        <Queue/>
       </header>
     </div>
   );
