@@ -5,19 +5,26 @@ import MusicPlayer from './Play/MusicPlayer.js'
 import './PlayPage.css';
 import Script from 'react-load-script';
 
+var funcPlay;
+var funcNext;
+var funcPrev;
+
 class PlayPage extends React.Component{
   constructor(props) {
     super(props);
     this.handleLoadSuccess = this.handleLoadSuccess.bind(this);
     this.httpGetGeniusSearch = this.httpGetGeniusSearch.bind(this);
     this.httpGetGeniusLyrics = this.httpGetGeniusLyrics.bind(this);
+    this.togglePlay = this.togglePlay.bind(this);
+    this.nextTrack = this.nextTrack.bind(this);
+    this.prevTrack = this.prevTrack.bind(this);
     this.state = {
       trackName:"Track Name",
       artistName:"Artist Name",
       imageURL:"https://i.pinimg.com/originals/b4/75/00/b4750046d94fed05d00dd849aa5f0ab7.jpg",
-      songLyrics: ""
+      songLyrics: "",
+      isPlay: false,
     }
-
   }
 
   componentDidMount() {
@@ -28,11 +35,12 @@ class PlayPage extends React.Component{
 
   handleLoadSuccess() {
     console.log("loaded");
-    const token = 'BQCU7mquJFGrLlaekXPGHR9tDbDPmQGLRBG0yBzl2ilnPnxE3R4q68nTXBy_jYzUQ8w3AsC-44X5PTRu1lOXdjMvW3V_fw9NQmalmjJU9ptsy47Bd7MSUI8gO76AUWG_n019zRZwc1ospWe2pvqRnotdHNJ4FmE';
+    const token = 'BQBNrSf6BR-PBS-TsE4wU0Q8q2xa_eWt7qGQp9Tb3FRWCSlqp7cFeYL9GmnJYsmNsQt3s2uUdnoUO-6dq-NDaE3ARJeH6idJVtwWguQHZUhzrmzvVhVncbxpW12KJ6_jo_B9aKoUiip8RTWgK3LN6FwrDu7A5KE';
     const player = new window.Spotify.Player({
       name: 'Web Playback SDK Quick Start Player',
       getOAuthToken: cb => { cb(token); }
     });
+        
     // Error handling
     player.addListener('initialization_error', ({ message }) => { console.error(message); });
     player.addListener('authentication_error', ({ message }) => { console.error(message); });
@@ -90,6 +98,17 @@ class PlayPage extends React.Component{
 
     // Connect to the player!
     player.connect();
+
+    funcPlay = () =>{
+      player.togglePlay();
+    }
+    funcNext = () =>{
+      player.nextTrack();
+    }
+    funcPrev = () =>{
+      player.previousTrack();
+    }
+
   }
 
   httpGetGeniusSearch(song_title, artist_name)
@@ -113,6 +132,24 @@ class PlayPage extends React.Component{
     xmlHttp.send();
     return xmlHttp.responseText;
   }
+
+  togglePlay() {
+    this.setState({
+      isPlay: !this.state.isPlay
+    })
+    console.log("TOGGLE!");
+    funcPlay();
+  }
+
+  nextTrack() {
+    funcNext();
+    console.log("NEXT!");
+  }
+
+  prevTrack() {
+    funcPrev();
+    console.log("PREV!");
+  }
   
   render(){
       return(
@@ -124,14 +161,14 @@ class PlayPage extends React.Component{
             <div className ="SongAndPlayer">
               <p className ="SongTitle"> {this.state.trackName}</p>
               <p className ="Artist"> {this.state.artistName}</p>
-              <MusicPlayer/>
+              <MusicPlayer togglePlay={this.togglePlay} isPlay={this.state.isPlay} nextTrack={this.nextTrack} prevTrack={this.prevTrack}/>
             </div>
             <LanguageSelect className ="LanguageSelectPlayer"/>
             <Script
               url="https://sdk.scdn.co/spotify-player.js"
             />
           </div>
-          <LyricBox lyrics={this.state.songLyrics}/>
+          <LyricBox lyrics={this.state.songLyrics} title={this.state.trackName}/>
         </div>
       )   
   }

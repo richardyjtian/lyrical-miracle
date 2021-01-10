@@ -6,7 +6,7 @@ class LyricBox extends React.Component{
   render(){
       return(
         <Box  m={1} border={1} borderColor="primary.main" borderRadius={16}>
-          <h2>Sample Lyric</h2>
+          <h2>{this.props.title}</h2>
           <p dangerouslySetInnerHTML={{ __html: this.props.lyrics}}></p>
         </Box>
       )   
