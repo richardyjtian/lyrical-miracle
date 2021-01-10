@@ -1,13 +1,16 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import SearchBar from './Search/SearchBar.js'
+import LanguageSelect from './Search/LanguageSelect.js'
+import SearchResult from './Search/SearchResult.js'
 
 class SearchPage extends React.Component{
   render(){
       return(
         <div className="SongSearch">
-          <form noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Search" />
-          </form>  
+          <SearchBar/>
+          <LanguageSelect/>
+          <h3>Results</h3>
+          <SearchResult/>
         </div>
       )   
   }
