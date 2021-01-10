@@ -1,22 +1,22 @@
-import logo from './logo.svg';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import SearchPage from './components/SearchPage.js'
+import PlayPage from './components/PlayPage.js'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Tabs defaultActiveKey="Search" id="PageTabs">
+          <Tab eventKey="Search" title="Search">
+            <SearchPage/>
+          </Tab>
+          <Tab eventKey="Play" title="Play">
+            <PlayPage/>
+          </Tab>
+        </Tabs>
       </header>
     </div>
   );
