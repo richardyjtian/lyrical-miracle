@@ -1,17 +1,16 @@
 import React from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import './LanguageSelect.css';
 
-class LanguangeSelect extends React.Component{
+class LanguageSelect extends React.Component{
   render(){
       return(
-          <Select
-            labelId="Language"
-            label = "Language"
-            id="languangeSelect"
-            className = "LanguageSelect"
-          >
+        <FormControl label= "Language" variant="outlined" style={{minWidth: 150}}> 
+        <InputLabel id="LanguageSelector">Language</InputLabel>
+          <Select>
             <MenuItem value={10}>English</MenuItem>
             <MenuItem value={20}>Spanish</MenuItem>
             <MenuItem value={30}>Japanese</MenuItem>
@@ -19,7 +18,8 @@ class LanguangeSelect extends React.Component{
             <MenuItem value={50}>Korean</MenuItem>
             <MenuItem value={60}>French</MenuItem>
           </Select>
+        </FormControl>
       )   
   }
 
-}export default LanguangeSelect;
+}export default LanguageSelect;
