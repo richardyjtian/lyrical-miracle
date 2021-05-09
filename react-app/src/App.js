@@ -2,7 +2,7 @@ import { Tab, Tabs } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLocation } from 'react-router-dom'
 
-import SearchPage from './components/Tabs/SearchPage'
+// import SearchPage from './components/Tabs/SearchPage'
 import PlayPage from './components/Tabs/PlayPage'
 // import Queue from './components/Queue'
 import './App.css';
@@ -17,9 +17,9 @@ export default function App() {
       <header className="App-header">
         <h1 id="Logo1">Lyrical Miracle</h1>
         <Tabs defaultActiveKey="Play" id="PageTabs">
-          <Tab eventKey="Search" title="Search">
+          {/* <Tab eventKey="Search" title="Search">
             <SearchPage />
-          </Tab>
+          </Tab> */}
           <Tab eventKey="Play" title="Play">
             <PlayPage auth_code={auth_code} state={state}/>
           </Tab>
